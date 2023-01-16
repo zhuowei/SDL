@@ -1364,6 +1364,8 @@ open_audio_device(const char *devname, int iscapture,
         }
         devname = NULL;
 
+// zhuowei
+#if 0
         for (i = 0; i < SDL_arraysize(open_devices); i++) {
             if ((open_devices[i]) && (open_devices[i]->iscapture)) {
                 SDL_SetError("Audio device already open");
@@ -1371,6 +1373,7 @@ open_audio_device(const char *devname, int iscapture,
                 return 0;
             }
         }
+#endif
     } else if ((!iscapture) && (current_audio.impl.OnlyHasDefaultOutputDevice)) {
         if ((devname) && (SDL_strcmp(devname, DEFAULT_OUTPUT_DEVNAME) != 0)) {
             SDL_UnlockMutex(current_audio.detectionLock);
@@ -1379,6 +1382,8 @@ open_audio_device(const char *devname, int iscapture,
         }
         devname = NULL;
 
+// zhuowei
+#if 0
         for (i = 0; i < SDL_arraysize(open_devices); i++) {
             if ((open_devices[i]) && (!open_devices[i]->iscapture)) {
                 SDL_UnlockMutex(current_audio.detectionLock);
@@ -1386,6 +1391,7 @@ open_audio_device(const char *devname, int iscapture,
                 return 0;
             }
         }
+#endif
     } else if (devname != NULL) {
         /* if the app specifies an exact string, we can pass the backend
            an actual device handle thingey, which saves them the effort of
